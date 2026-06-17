@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#161920">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tv_dialog_servicio_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Servicio"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Cliente:"
+            android:textColor="#8B949E"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+        <Spinner
+            android:id="@+id/sp_dialog_servicio_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Servicio:"
+            android:textColor="#8B949E"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+        <Spinner
+            android:id="@+id/sp_dialog_servicio_tipo"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:entries="@array/tipos_servicio_array"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado del Servicio:"
+            android:textColor="#8B949E"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+        <Spinner
+            android:id="@+id/sp_dialog_servicio_estado"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:entries="@array/estados_servicio_array"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_dialog_servicio_costo_mo"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:hint="Costo Mano de Obra ($)..."
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="12dp"
+            android:textColor="#1C2541"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_dialog_servicio_costo_mat"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:hint="Costo Materiales ($)..."
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="12dp"
+            android:textColor="#1C2541"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_dialog_servicio_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:hint="Descripción del trabajo..."
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:padding="12dp"
+            android:textColor="#1C2541"
+            android:layout_marginBottom="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_dialog_servicio_cancelar"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:textColor="#EB5757"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btn_dialog_servicio_guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#2F80ED"
+                android:text="Guardar"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
