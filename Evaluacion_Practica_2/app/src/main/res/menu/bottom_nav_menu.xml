@@ -15,7 +15,7 @@
     <item
         android:id="@+id/nav_pedidos"
         android:icon="@drawable/ic_nav_pedidos"
-        android:title="Pedidos"/>
+        android:title="Ventas"/>
     <item
         android:id="@+id/nav_config"
         android:icon="@drawable/ic_nav_config"

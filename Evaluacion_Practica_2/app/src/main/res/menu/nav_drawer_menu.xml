@@ -4,7 +4,7 @@
         <item android:id="@+id/drawer_inicio"    android:icon="@drawable/ic_nav_inicio"    android:title="Inicio"/>
         <item android:id="@+id/drawer_productos" android:icon="@drawable/ic_nav_productos" android:title="Productos"/>
         <item android:id="@+id/drawer_clientes"  android:icon="@drawable/ic_nav_clientes"  android:title="Clientes / Proveedores"/>
-        <item android:id="@+id/drawer_pedidos"   android:icon="@drawable/ic_nav_pedidos"   android:title="Pedidos"/>
+        <item android:id="@+id/drawer_pedidos"   android:icon="@drawable/ic_nav_pedidos"   android:title="Ventas"/>
         <item android:id="@+id/drawer_config"    android:icon="@drawable/ic_nav_config"    android:title="Configuración"/>
     </group>
     <group>

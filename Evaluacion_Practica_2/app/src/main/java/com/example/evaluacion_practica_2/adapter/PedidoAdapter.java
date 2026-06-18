@@ -32,7 +32,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pedido p = lista.get(position);
-        holder.tvId.setText("Pedido #" + p.id);
+        holder.tvId.setText("Venta #" + p.id);
         holder.tvDescripcion.setText(p.descripcion);
         holder.tvTotal.setText("$ " + String.format(Locale.getDefault(), "%.2f", p.total));
         holder.tvEstado.setText(p.estado);

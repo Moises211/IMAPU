@@ -6,7 +6,7 @@ import java.util.List;
 @Dao
 public interface PedidoDAO {
     @Insert
-    void insertar(Pedido p);
+    long insertar(Pedido p);
     @Update
     void actualizar(Pedido p);
     @Delete
@@ -15,8 +15,10 @@ public interface PedidoDAO {
     List<Pedido> obtenerTodos();
     @Query("SELECT * FROM pedidos WHERE fecha = :fecha")
     List<Pedido> obtenerPorFecha(String fecha);
-    @Query("SELECT SUM(total) FROM pedidos WHERE estado = 'completado' AND fecha = :fecha")
+    @Query("SELECT COALESCE(SUM(total), 0) FROM pedidos WHERE estado = 'completado' AND fecha = :fecha")
     double totalVentasDia(String fecha);
+    @Query("SELECT COUNT(*) FROM pedidos WHERE estado = 'completado' AND fecha = :fecha")
+    int contarVentasDia(String fecha);
     @Query("SELECT COUNT(*) FROM pedidos WHERE estado = 'pendiente'")
     int contarPendientes();
 }

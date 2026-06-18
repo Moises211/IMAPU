@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.evaluacion_practica_2.R;
+import com.example.evaluacion_practica_2.SessionManager;
 import com.example.evaluacion_practica_2.adapter.ProductoAdapter;
 import com.example.evaluacion_practica_2.data.AppDB;
 import com.example.evaluacion_practica_2.modelos.Producto;
@@ -22,12 +23,14 @@ public class ProductosFragment extends Fragment {
     private AppDB db;
     private ProductoAdapter adapter;
     private List<Producto> lista;
+    private boolean esAdmin;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_productos, container, false);
         db = AppDB.getInstance(requireContext());
+        esAdmin = new SessionManager(requireContext()).isAdmin();
 
         RecyclerView rv = view.findViewById(R.id.rv_productos);
         rv.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -48,12 +51,20 @@ public class ProductosFragment extends Fragment {
         });
 
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_producto);
-        fab.setOnClickListener(v -> mostrarDialogoProducto(null));
+        fab.setVisibility(esAdmin ? View.VISIBLE : View.GONE);
+        fab.setOnClickListener(v -> {
+            if (esAdmin) mostrarDialogoProducto(null);
+            else mostrarSinPermiso();
+        });
 
         return view;
     }
 
     private void onProductoLongClick(Producto p) {
+        if (!esAdmin) {
+            mostrarSinPermiso();
+            return;
+        }
         String[] opciones = {"Editar", "Eliminar"};
         new AlertDialog.Builder(requireContext())
                 .setTitle(p.nombre)
@@ -61,6 +72,10 @@ public class ProductosFragment extends Fragment {
                     if (which == 0) mostrarDialogoProducto(p);
                     else confirmarEliminar(p);
                 }).show();
+    }
+
+    private void mostrarSinPermiso() {
+        Toast.makeText(requireContext(), "Solo el administrador puede modificar productos", Toast.LENGTH_SHORT).show();
     }
 
     private void confirmarEliminar(Producto p) {

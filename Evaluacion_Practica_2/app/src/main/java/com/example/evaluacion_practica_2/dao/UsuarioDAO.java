@@ -17,4 +17,6 @@ public interface UsuarioDAO {
     Usuario login(String user, String pass);
     @Query("SELECT * FROM usuarios WHERE usuario = :user LIMIT 1")
     Usuario buscarPorUsuario(String user);
+    @Query("SELECT * FROM usuarios WHERE id = :id LIMIT 1")
+    Usuario buscarPorId(int id);
 }

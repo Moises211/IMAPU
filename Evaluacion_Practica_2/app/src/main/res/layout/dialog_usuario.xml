@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText android:id="@+id/et_usuario_nombre"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Nombre completo" android:layout_marginBottom="12dp"/>
+
+    <EditText android:id="@+id/et_usuario_login"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Nombre de usuario" android:layout_marginBottom="12dp"/>
+
+    <EditText android:id="@+id/et_usuario_password"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Contraseña" android:inputType="textPassword"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Rol:" android:layout_marginBottom="4dp"/>
+
+    <Spinner android:id="@+id/sp_usuario_rol"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+</LinearLayout>

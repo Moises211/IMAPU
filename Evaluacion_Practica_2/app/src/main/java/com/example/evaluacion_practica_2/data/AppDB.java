@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 import com.example.evaluacion_practica_2.dao.*;
 import com.example.evaluacion_practica_2.modelos.*;
 
-@Database(entities = {Usuario.class, Producto.class, Cliente.class, Pedido.class}, version = 2, exportSchema = false)
+@Database(entities = {Usuario.class, Producto.class, Cliente.class, Pedido.class, PedidoDetalle.class}, version = 4, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
     private static AppDB instancia;
 
@@ -15,6 +15,7 @@ public abstract class AppDB extends RoomDatabase {
     public abstract ProductoDAO productoDAO();
     public abstract ClienteDAO clienteDAO();
     public abstract PedidoDAO pedidoDAO();
+    public abstract PedidoDetalleDAO pedidoDetalleDAO();
 
     public static synchronized AppDB getInstance(Context context) {
         if (instancia == null) {

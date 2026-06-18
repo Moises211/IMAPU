@@ -26,9 +26,13 @@ public class InicioFragment extends Fragment {
 
         TextView tvBienvenida = view.findViewById(R.id.tv_bienvenida);
         TextView tvProductos = view.findViewById(R.id.tv_total_productos);
+        TextView tvClientes = view.findViewById(R.id.tv_total_clientes);
+        TextView tvProveedores = view.findViewById(R.id.tv_total_proveedores);
         TextView tvPendientes = view.findViewById(R.id.tv_pedidos_pendientes);
         TextView tvVentas = view.findViewById(R.id.tv_ventas_hoy);
+        TextView tvVentasCantidad = view.findViewById(R.id.tv_ventas_cantidad);
         TextView tvStockBajo = view.findViewById(R.id.tv_stock_bajo);
+        TextView tvStockTotal = view.findViewById(R.id.tv_stock_total);
 
         SessionManager session = new SessionManager(requireContext());
         tvBienvenida.setText("Bienvenido, " + session.getNombre());
@@ -36,9 +40,13 @@ public class InicioFragment extends Fragment {
         String hoy = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
         tvProductos.setText(String.valueOf(db.productoDAO().contarProductos()));
+        tvClientes.setText(String.valueOf(db.clienteDAO().contarPorTipo("cliente")));
+        tvProveedores.setText(String.valueOf(db.clienteDAO().contarPorTipo("proveedor")));
         tvPendientes.setText(String.valueOf(db.pedidoDAO().contarPendientes()));
         tvVentas.setText("$ " + String.format(Locale.getDefault(), "%.2f", db.pedidoDAO().totalVentasDia(hoy)));
+        tvVentasCantidad.setText(db.pedidoDAO().contarVentasDia(hoy) + " ventas completadas");
         tvStockBajo.setText(String.valueOf(db.productoDAO().stockBajo().size()));
+        tvStockTotal.setText(db.productoDAO().totalStock() + " unidades");
 
         return view;
     }

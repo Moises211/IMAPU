@@ -1,6 +1,7 @@
 package com.example.evaluacion_practica_2;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -14,6 +15,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etNombre, etUsuario, etContrasena, etConfirmar;
     private RadioGroup rgRol;
     private AppDB db;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +28,16 @@ public class RegisterActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
 
         db = AppDB.getInstance(this);
+        session = new SessionManager(this);
         etNombre = findViewById(R.id.et_nombre);
         etUsuario = findViewById(R.id.et_usuario_reg);
         etContrasena = findViewById(R.id.et_contrasena_reg);
         etConfirmar = findViewById(R.id.et_confirmar);
         rgRol = findViewById(R.id.rg_rol);
+        if (!session.isAdmin()) {
+            rgRol.check(R.id.rb_cajero);
+            rgRol.setVisibility(View.GONE);
+        }
 
         Button btnRegistrar = findViewById(R.id.btn_registrar);
         btnRegistrar.setOnClickListener(v -> registrar());
@@ -55,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        String rol = rgRol.getCheckedRadioButtonId() == R.id.rb_admin ? "admin" : "cajero";
+        String rol = session.isAdmin() && rgRol.getCheckedRadioButtonId() == R.id.rb_admin ? "admin" : "cajero";
         Usuario u = new Usuario();
         u.nombre = nombre;
         u.usuario = usuario;

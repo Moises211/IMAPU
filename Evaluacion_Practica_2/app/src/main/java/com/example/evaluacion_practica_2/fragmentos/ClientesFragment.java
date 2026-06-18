@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.evaluacion_practica_2.R;
+import com.example.evaluacion_practica_2.SessionManager;
 import com.example.evaluacion_practica_2.adapter.ClienteAdapter;
 import com.example.evaluacion_practica_2.data.AppDB;
 import com.example.evaluacion_practica_2.modelos.Cliente;
@@ -22,16 +23,18 @@ public class ClientesFragment extends Fragment {
     private AppDB db;
     private ClienteAdapter adapter;
     private List<Cliente> lista;
+    private boolean esAdmin;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clientes, container, false);
         db = AppDB.getInstance(requireContext());
+        esAdmin = new SessionManager(requireContext()).isAdmin();
 
         RecyclerView rv = view.findViewById(R.id.rv_clientes);
         rv.setLayoutManager(new LinearLayoutManager(requireContext()));
-        lista = db.clienteDAO().obtenerTodos();
+        lista = obtenerClientesVisibles("");
         adapter = new ClienteAdapter(lista, this::onClienteLongClick);
         rv.setAdapter(adapter);
 
@@ -39,7 +42,7 @@ public class ClientesFragment extends Fragment {
         etBuscar.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 lista.clear();
-                lista.addAll(s.toString().isEmpty() ? db.clienteDAO().obtenerTodos() : db.clienteDAO().buscar(s.toString()));
+                lista.addAll(obtenerClientesVisibles(s.toString()));
                 adapter.notifyDataSetChanged();
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -53,6 +56,10 @@ public class ClientesFragment extends Fragment {
     }
 
     private void onClienteLongClick(Cliente c) {
+        if (!esAdmin && "proveedor".equals(c.tipo)) {
+            Toast.makeText(requireContext(), "Solo el administrador puede modificar proveedores", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String[] opciones = {"Editar", "Eliminar"};
         new AlertDialog.Builder(requireContext())
                 .setTitle(c.nombre)
@@ -82,6 +89,10 @@ public class ClientesFragment extends Fragment {
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, tipos);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTipo.setAdapter(adapterSpinner);
+        if (!esAdmin) {
+            spTipo.setSelection(0);
+            spTipo.setEnabled(false);
+        }
 
         if (existente != null) {
             etNombre.setText(existente.nombre);
@@ -102,7 +113,7 @@ public class ClientesFragment extends Fragment {
                     c.telefono = etTelefono.getText().toString().trim();
                     c.direccion = etDireccion.getText().toString().trim();
                     c.notas = etNotas.getText().toString().trim();
-                    c.tipo = spTipo.getSelectedItem().toString();
+                    c.tipo = esAdmin ? spTipo.getSelectedItem().toString() : "cliente";
                     if (existente == null) db.clienteDAO().insertar(c);
                     else db.clienteDAO().actualizar(c);
                     refrescar();
@@ -112,7 +123,16 @@ public class ClientesFragment extends Fragment {
 
     private void refrescar() {
         lista.clear();
-        lista.addAll(db.clienteDAO().obtenerTodos());
+        lista.addAll(obtenerClientesVisibles(""));
         adapter.notifyDataSetChanged();
+    }
+
+    private List<Cliente> obtenerClientesVisibles(String busqueda) {
+        if (!esAdmin) {
+            return busqueda.isEmpty()
+                    ? db.clienteDAO().obtenerPorTipo("cliente")
+                    : db.clienteDAO().buscarPorTipo(busqueda, "cliente");
+        }
+        return busqueda.isEmpty() ? db.clienteDAO().obtenerTodos() : db.clienteDAO().buscar(busqueda);
     }
 }

@@ -39,6 +39,29 @@
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         </LinearLayout>
 
+        <LinearLayout android:id="@+id/layout_admin_usuarios"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginBottom="32dp">
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="?attr/colorOutline" android:layout_marginBottom="24dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Usuarios del sistema" android:textSize="16sp" android:textStyle="bold"
+                android:layout_marginBottom="12dp" android:textColor="?attr/colorOnSurface"/>
+
+            <Button android:id="@+id/btn_nuevo_usuario"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Nuevo usuario"
+                android:layout_marginBottom="12dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_usuarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
+        </LinearLayout>
+
         <Button android:id="@+id/btn_cerrar_sesion"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="Cerrar sesión"

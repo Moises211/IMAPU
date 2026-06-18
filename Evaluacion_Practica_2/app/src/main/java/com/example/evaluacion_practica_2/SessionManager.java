@@ -32,6 +32,8 @@ public class SessionManager {
     public String getUsuario() { return prefs.getString(KEY_USUARIO, ""); }
     public String getNombre() { return prefs.getString(KEY_NOMBRE, ""); }
     public String getRol() { return prefs.getString(KEY_ROL, ""); }
+    public boolean isAdmin() { return "admin".equalsIgnoreCase(getRol()); }
+    public boolean isCajero() { return "cajero".equalsIgnoreCase(getRol()); }
 
     public boolean isTemaOscuro() { return prefs.getBoolean(KEY_TEMA, false); }
     public void setTemaOscuro(boolean oscuro) { prefs.edit().putBoolean(KEY_TEMA, oscuro).apply(); }

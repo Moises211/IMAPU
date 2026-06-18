@@ -7,6 +7,9 @@ public class Pedido {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public int clienteId;
+    public int productoId;
+    public int cantidad;
+    public double precioUnitario;
     public String descripcion;
     public double total;
     public String estado; // "pendiente", "completado", "cancelado"

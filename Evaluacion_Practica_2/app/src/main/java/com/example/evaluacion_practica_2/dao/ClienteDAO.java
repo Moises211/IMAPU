@@ -15,6 +15,10 @@ public interface ClienteDAO {
     List<Cliente> obtenerTodos();
     @Query("SELECT * FROM clientes WHERE nombre LIKE '%' || :q || '%'")
     List<Cliente> buscar(String q);
+    @Query("SELECT * FROM clientes WHERE tipo = :tipo AND nombre LIKE '%' || :q || '%'")
+    List<Cliente> buscarPorTipo(String q, String tipo);
     @Query("SELECT * FROM clientes WHERE tipo = :tipo")
     List<Cliente> obtenerPorTipo(String tipo);
+    @Query("SELECT COUNT(*) FROM clientes WHERE tipo = :tipo")
+    int contarPorTipo(String tipo);
 }
