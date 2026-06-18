@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Cliente:" android:layout_marginBottom="4dp"/>
+    <Spinner android:id="@+id/sp_cliente_ped" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
+
+    <EditText android:id="@+id/et_descripcion_ped" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Descripción del pedido"
+        android:minLines="2" android:layout_marginBottom="12dp"/>
+
+    <EditText android:id="@+id/et_total_ped" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Total (Q)"
+        android:inputType="numberDecimal" android:layout_marginBottom="12dp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Estado:" android:layout_marginBottom="4dp"/>
+    <Spinner android:id="@+id/sp_estado_ped" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Método de pago:" android:layout_marginBottom="4dp"/>
+    <Spinner android:id="@+id/sp_metodo_pago" android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

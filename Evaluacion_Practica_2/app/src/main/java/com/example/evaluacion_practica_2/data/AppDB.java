@@ -1,26 +1,26 @@
 package com.example.evaluacion_practica_2.data;
 
 import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import com.example.evaluacion_practica_2.dao.*;
+import com.example.evaluacion_practica_2.modelos.*;
 
-import com.example.evaluacion_practica_2.dao.ClientesDAO;
-import com.example.evaluacion_practica_2.dao.ServiciosDAO;
-import com.example.evaluacion_practica_2.modelos.Clientes;
-import com.example.evaluacion_practica_2.modelos.Servicios;
-
-@Database(entities = {Clientes.class, Servicios.class}, version = 1)
+@Database(entities = {Usuario.class, Producto.class, Cliente.class, Pedido.class}, version = 2, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
-    private static volatile AppDB instancia;
+    private static AppDB instancia;
 
-    public abstract ClientesDAO clientesDAO();
-    public abstract ServiciosDAO serviciosDAO();
+    public abstract UsuarioDAO usuarioDAO();
+    public abstract ProductoDAO productoDAO();
+    public abstract ClienteDAO clienteDAO();
+    public abstract PedidoDAO pedidoDAO();
 
-    public static synchronized AppDB getInstance(Context context){
-        if(instancia == null){
-            instancia = Room.databaseBuilder(context.getApplicationContext(), AppDB.class, "db_taller")
+    public static synchronized AppDB getInstance(Context context) {
+        if (instancia == null) {
+            instancia = Room.databaseBuilder(context.getApplicationContext(), AppDB.class, "minisuper_db")
+                    .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
         return instancia;

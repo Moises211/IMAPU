@@ -8,19 +8,19 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
         android:orientation="vertical" android:padding="8dp">
 
-        <EditText android:id="@+id/et_buscar_cliente"
+        <EditText android:id="@+id/et_buscar_producto"
             android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:hint="Buscar cliente o proveedor..." android:padding="10dp"
+            android:hint="Buscar producto..." android:padding="10dp"
             android:layout_marginBottom="8dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_clientes"
+            android:id="@+id/rv_productos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_nuevo_cliente"
+        android:id="@+id/fab_nuevo_producto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

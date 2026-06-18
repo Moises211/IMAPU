@@ -1,21 +1,5 @@
 <resources>
-    <string name="app_name">Evaluacion_Practica_2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="tipos_servicio_array">
-        <item>Instalacion</item>
-        <item>Reparacion</item>
-        <item>Mantenimiento</item>
-    </string-array>
-    <string-array name="tipos_servicio_array_filter">
-        <item>Todos</item>
-        <item>Instalacion</item>
-        <item>Reparacion</item>
-        <item>Mantenimiento</item>
-    </string-array>
-    <string-array name="estados_servicio_array">
-        <item>Pendiente</item>
-        <item>En Proceso</item>
-        <item>Completado</item>
-    </string-array>
+    <string name="app_name">Mini Súper</string>
+    <string name="nav_open">Abrir menú</string>
+    <string name="nav_close">Cerrar menú</string>
 </resources>
