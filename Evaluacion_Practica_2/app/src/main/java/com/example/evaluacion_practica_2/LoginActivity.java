@@ -35,6 +35,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         db = AppDB.getInstance(this);
 
+        // Crear usuario admin por defecto si la BD está vacía
+        if (db.usuarioDAO().obtenerTodos().isEmpty()) {
+            Usuario admin = new Usuario();
+            admin.nombre = "Administrador";
+            admin.usuario = "admin";
+            admin.contrasena = "admin123";
+            admin.rol = "admin";
+            db.usuarioDAO().insertar(admin);
+        }
+
         etUsuario = findViewById(R.id.et_usuario);
         etContrasena = findViewById(R.id.et_contrasena);
         Button btnLogin = findViewById(R.id.btn_login);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:id="@+id/drawer_inicio" android:icon="@drawable/ic_menu_home" android:title="Inicio"/>
-        <item android:id="@+id/drawer_productos" android:icon="@drawable/ic_menu_preferences" android:title="Productos"/>
-        <item android:id="@+id/drawer_clientes" android:icon="@drawable/ic_menu_cc" android:title="Clientes / Proveedores"/>
-        <item android:id="@+id/drawer_pedidos" android:icon="@drawable/ic_menu_edit" android:title="Pedidos"/>
-        <item android:id="@+id/drawer_config" android:icon="@drawable/ic_menu_my_calendar" android:title="Configuración"/>
+        <item android:id="@+id/drawer_inicio"    android:icon="@drawable/ic_nav_inicio"    android:title="Inicio"/>
+        <item android:id="@+id/drawer_productos" android:icon="@drawable/ic_nav_productos" android:title="Productos"/>
+        <item android:id="@+id/drawer_clientes"  android:icon="@drawable/ic_nav_clientes"  android:title="Clientes / Proveedores"/>
+        <item android:id="@+id/drawer_pedidos"   android:icon="@drawable/ic_nav_pedidos"   android:title="Pedidos"/>
+        <item android:id="@+id/drawer_config"    android:icon="@drawable/ic_nav_config"    android:title="Configuración"/>
     </group>
     <group>
         <item android:id="@+id/drawer_salir" android:title="Cerrar sesión"/>
