@@ -34,7 +34,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         Pedido p = lista.get(position);
         holder.tvId.setText("Pedido #" + p.id);
         holder.tvDescripcion.setText(p.descripcion);
-        holder.tvTotal.setText("Q " + String.format(Locale.getDefault(), "%.2f", p.total));
+        holder.tvTotal.setText("$ " + String.format(Locale.getDefault(), "%.2f", p.total));
         holder.tvEstado.setText(p.estado);
         holder.tvFecha.setText(p.fecha);
         holder.itemView.setOnLongClickListener(v -> { listener.onLongClick(p); return true; });

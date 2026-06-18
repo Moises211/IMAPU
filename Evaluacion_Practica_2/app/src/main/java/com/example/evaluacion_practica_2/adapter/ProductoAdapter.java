@@ -34,7 +34,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         Producto p = lista.get(position);
         holder.tvNombre.setText(p.nombre);
         holder.tvCategoria.setText(p.categoria);
-        holder.tvPrecio.setText("Q " + String.format(Locale.getDefault(), "%.2f", p.precio));
+        holder.tvPrecio.setText("$ " + String.format(Locale.getDefault(), "%.2f", p.precio));
         holder.tvStock.setText("Stock: " + p.stock);
         if (p.stock <= 5) holder.tvStock.setTextColor(0xFFE53935);
         else holder.tvStock.setTextColor(0xFF388E3C);

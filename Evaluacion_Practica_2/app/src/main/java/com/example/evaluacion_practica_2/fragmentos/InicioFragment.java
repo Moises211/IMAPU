@@ -37,7 +37,7 @@ public class InicioFragment extends Fragment {
 
         tvProductos.setText(String.valueOf(db.productoDAO().contarProductos()));
         tvPendientes.setText(String.valueOf(db.pedidoDAO().contarPendientes()));
-        tvVentas.setText("Q " + String.format(Locale.getDefault(), "%.2f", db.pedidoDAO().totalVentasDia(hoy)));
+        tvVentas.setText("$ " + String.format(Locale.getDefault(), "%.2f", db.pedidoDAO().totalVentasDia(hoy)));
         tvStockBajo.setText(String.valueOf(db.productoDAO().stockBajo().size()));
 
         return view;
